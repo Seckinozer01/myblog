@@ -1,0 +1,190 @@
+from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
+from .forms import ArticleForm,SupportForm
+from .models import ShowArticle,AddComment,SendSupport ,Category 
+from django.contrib import messages
+from ozer.settings import AUTH_USER_MODEL 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+# Create your views here.
+#---------------------------------------------------------------------------------------------------------#
+
+# def index(request):
+   # articles = ShowArticle.get_all_articles()
+   # categories = Category.get_all_categories()
+   # data = {}
+   # data ['articles'] = articles
+   # data ['categories'] = categories
+   # return render (request,'index.html',data) 
+#
+
+#---------------------------------------------------------------------------------------------------------#  
+
+def about(request):
+    form = SupportForm(request.POST or None)
+    if form.is_valid():
+        support_message = form.save(commit = False)
+        
+        support_author = SendSupport.support_name
+        support_tittle = SendSupport.support_tittle
+        support_content = SendSupport.support_content
+        support_phone = SendSupport.support_phone
+        support_email = SendSupport.support_email
+        support_message.save()
+
+        messages.success(request,"Mesaj Başarıyla Oluşturuldu")
+        return redirect("contact")
+
+    return render(request,"about.html",{"form" : form})
+#---------------------------------------------------------------------------------------------------------#
+def articles(request):
+    keyword = request.GET.get("keyword")
+    
+    articles = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if keyword:
+        articles = ShowArticle.objects.filter(title__contains = keyword )
+        return render(request,"index.html",{"articles":articles})
+    if categoryID:
+        articles = ShowArticle.get_all_articles_by_categoryid(categoryID)
+        if keyword:
+            articles = ShowArticle.objects.filter(title__contains = keyword)
+            return render(request,"index/?category={{category.id}}",{"articles":articles})
+    else:
+        articles =  ShowArticle.get_all_articles()
+    data = {}
+    data ['articles'] = articles
+    data ['categories'] = categories
+    return render (request,'index.html',data)
+
+    return render(request,"index.html",{"articles":articles})
+ #---------------------------------------------------------------------------------------------------------#   
+
+def categorydetail(request,):
+    keyword = request.GET.get("keyword")
+    
+
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if keyword:
+        articles = ShowArticle.objects.filter(title__contains = keyword )
+        return render(request,"category.html",{"articles":articles , "categories": categories})
+    if categoryID:
+        articles = ShowArticle.get_all_articles_by_categoryid(categoryID)
+    else:
+        articles =  ShowArticle.get_all_articles()
+    data = {}
+    data ['articles'] = articles
+    data ['categories'] = categories
+    return render (request,'category.html',data)
+
+    return render(request,"category.html",{"articles":articles})
+
+#---------------------------------------------------------------------------------------------------------#
+
+@login_required(login_url = "user:login")
+def dashboard(request):
+    articles = ShowArticle.objects.filter(author = request.user)
+    context = {"articles":articles}
+
+    return render(request,"dashboard.html",context)
+#---------------------------------------------------------------------------------------------------------#
+@login_required(login_url = "user:login")
+def addArticle(request):
+    form = ArticleForm(request.POST or None,request.FILES or None)
+    
+    if form.is_valid():
+        article = form.save(commit = False)
+        article.author = request.user
+        article.save()
+
+        messages.success(request,"Makale Başarıyla Oluşturuldu")
+        return redirect("Article:dashboard")
+
+    return render(request,"addarticle.html",{"form" : form})
+#---------------------------------------------------------------------------------------------------------#
+def detail(request,id):
+    #article = Article.objects.filter(id = id).first()
+    article = get_object_or_404(ShowArticle,id=id)
+    comments = article.comments.all()
+
+    keyword = request.GET.get("keyword")
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    
+    if categoryID:
+        articles = ShowArticle.get_all_articles_by_categoryid(categoryID)
+        if keyword:
+            articles = ShowArticle.objects.filter(title__contains = keyword)
+            return render(request,"index/?category={{category.id}}",{"articles":articles})
+    else:
+        articles =  ShowArticle.get_all_articles()
+    data = {}
+    data ['articles'] = articles
+    data ['categories'] = categories
+    return render (request,"detail.html",{"article":article,"comments":comments,"articles":articles , "categories":categories})
+ #---------------------------------------------------------------------------------------------------------#   
+
+@login_required(login_url = "user:login")
+def updateArticle(request,id):
+    article = get_object_or_404(ShowArticle,id = id)
+    form = ArticleForm(request.POST or None,request.FILES or None,instance = article)
+    if form.is_valid():
+        article = form.save(commit=False)
+        
+        article.author = request.user
+        article.save()
+
+        messages.success(request,"Makale başarıyla güncellendi")
+        return redirect("Article:dashboard")
+
+
+    return render(request,"update.html",{"form":form})
+ #---------------------------------------------------------------------------------------------------------#   
+@login_required(login_url = "user:login")
+def deleteArticle(request,id):
+    article = get_object_or_404(ShowArticle,id = id)
+
+    article.delete()
+
+    messages.success(request,"Makale Başarıyla Silindi")
+
+    return redirect("Article:dashboard")
+#---------------------------------------------------------------------------------------------------------#
+@login_required(login_url = "user:login")
+def addComment(request,id):
+  
+    article = get_object_or_404(ShowArticle,id = id)
+
+    if request.method == "POST":
+        comment_author = request.user
+        comment_content = request.POST.get("comment_content")
+        newComment = AddComment(comment_author = comment_author , comment_content = comment_content)
+        
+        newComment.article = article
+        
+        newComment.save()
+
+    return redirect("/articles/article/" + str(id))
+
+#---------------------------------------------------------------------------------------------------------#
+
+
+
+def contact(request):
+    form = SupportForm(request.POST or None)
+    if form.is_valid():
+        support_message = form.save(commit = False)
+        
+        support_author = SendSupport.support_name
+        support_tittle = SendSupport.support_tittle
+        support_content = SendSupport.support_content
+        support_phone = SendSupport.support_phone
+        support_email = SendSupport.support_email
+        support_message.save()
+
+        messages.success(request,"Mesaj Başarıyla Oluşturuldu")
+        return redirect("contact")
+
+    return render(request,"contact.html",{"form" : form})

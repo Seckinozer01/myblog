@@ -1,0 +1,209 @@
+
+.post-detail{
+    width: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+    .card {
+      border: none;
+      box-shadow: 5px 6px 6px 2px #e9ecef;
+      border-radius: 4px;
+      padding-bottom: 5%;
+  }
+  
+  .dots {
+      height: 4px;
+      width: 4px;
+      margin-bottom: 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block
+  }
+  
+  .badge {
+      padding: 7px;
+      padding-right: 9px;
+      padding-left: 16px;
+      box-shadow: 5px 6px 6px 2px #e9ecef
+  }
+  
+  .user-img {
+      margin-top: 4px
+  }
+  
+  .check-icon {
+      font-size: 17px;
+      color: #c3bfbf;
+      top: 1px;
+      position: relative;
+      margin-left: 3px
+  }
+  
+  .form-check-input {
+      margin-top: 6px;
+      margin-left: -24px !important;
+      cursor: pointer
+  }
+  
+  .form-check-input:focus {
+      box-shadow: none
+  }
+  
+  .icons i {
+      margin-left: 8px
+  }
+  
+  .reply {
+      margin-left: 12px
+  }
+  
+  .reply small {
+      color: #b7b4b4
+  }
+  
+  .reply small:hover {
+      color: green;
+      cursor: pointer
+  }
+  .breadcrumbs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    background-color: #f3f8fa;
+    min-height: 40px;
+  }
+  
+  .breadcrumbs h2 {
+    font-size: 26px;
+    font-weight: 250;
+  }
+  
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .breadcrumbs ol li + li {
+    padding-left: 10px;
+  }
+  
+  .breadcrumbs ol li + li::before {
+    display: inline-block;
+    padding-right: 10px;
+    color: #6c757d;
+    content: "/";
+  }
+  .sidebar {
+    padding: 15px;
+    width: 120%;
+  
+    margin: 10px 0 30px 0px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+   .sidebar .sidebar-title {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0 0 0 0;
+    margin: 0 0 15px 0;
+    color: #32627b;
+    position: relative;
+  }
+  
+   .sidebar .sidebar-item {
+    margin-bottom: 30px;
+  }
+  
+  .sidebar .search-form form {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 3px 10px;
+    position: relative;
+  }
+  
+   .sidebar .search-form form input[type="text"] {
+    border: 0;
+    padding: 4px;
+    width: calc(100% - 40px);
+  }
+  
+  .sidebar .search-form form button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 15px;
+    margin: -1px;
+    background: #32627b;
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+  .sidebar .search-form form button:hover {
+    background: #68A4C4;
+  }
+  
+   .sidebar .categories ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+   .sidebar .categories ul li + li {
+    padding-top: 10px;
+  }
+  
+   .sidebar .categories ul a {
+    color: #3f8db5;
+  }
+  
+   .sidebar .categories ul a:hover {
+    color: #68A4C4;
+  }
+  
+   .sidebar .categories ul a span {
+    padding-left: 5px;
+    color: #bedae8;
+    font-size: 14px;
+  }
+  
+  .sidebar .recent-posts .post-item + .post-item {
+    margin-top: 15px;
+  }
+  
+  .sidebar .recent-posts img {
+    width: 90px;
+    float: left;
+  }
+  
+   .sidebar .recent-posts h4 {
+    font-size: 15px;
+    margin-left: 95px;
+    font-weight: bold;
+  }
+  
+  
+   .sidebar .recent-posts h4 a {
+    color: #0d2735;
+    transition: 0.3s;
+  }
+  
+  .sidebar .recent-posts h4 a:hover {
+    color: #68A4C4;
+  }
+  
+  .sidebar .recent-posts time {
+    display: block;
+    margin-left: 95px;
+    font-style: italic;
+    font-size: 14px;
+    color: #72afce;
+  }
+  
+  

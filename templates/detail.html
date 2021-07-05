@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href=" {% static 'css/detail.css' %} ">
+
+<title> {{article.title}} </title>
+  <!-- Page Content -->
+  <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.5s" >
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <ol>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href=""> {{article.category}} </a></li>
+          <li> {{article.title}} </li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Blog Section -->
+  <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.5s" >
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2> {{article.title}} </h2>
+      </div>
+
+    </div>
+  </section><!-- End Blog Section -->
+  <div class="container ">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8 post-detail wow fadeInLeft" data-wow-duration ="1.5s" >
+        <div class="md-4" style="float: left;">
+          <p class="lead md-4"> 
+            <a href="#">{{article.author.username}}</a> tarafından yayınlandı
+          </p>
+        </div>
+        <div style=" float:right">
+          <p class="lead">Paylaşım Tarihi : {{article.created_date}}</p>
+        </div>
+        
+        
+        <!-- Preview Image -->
+        {% if article.article_image %}
+        <img class="img-fluid rounded" src="{{article.article_image.url }}" alt="">
+        {% endif %}
+        <hr>
+        
+        <!-- Post Content -->
+        <p class="lead">{{article.content|safe}}</p>
+        
+        <hr>
+<!--Reply-->
+        <div class="card mb-3 wow fadeIn">
+          <div class="card-header font-weight-bold">Bu Makaleye Bir Yorum Ekleyin</div>
+          <div class="card-body">
+              <form method="post" action="{% url 'Article:comment' article.id %}">  
+                {% if request.user.is_authenticated %}
+                {% csrf_token %}
+                  <!-- Comment -->
+                  <div class="text-muted"> {{ request.user.username}} olarak yorum yapıyorsunuz. </div>
+                  <br>
+                  <div class="form-group">
+                      <textarea class="form-control" id="replyFormComment" name="comment_content" rows="5" required placeholder="Yorumunuz" ></textarea>
+                  </div>
+                  <div class="text-center mt-4">
+                    <button class="btn btn-info btn-md" style="width: 100%;" type="submit">Paylaş</button>
+                  </div>         
+                {% else %}
+                <div class="alert alert-danger"> Yorum Eklemek İçin Lütfen <a href="/user/login"> Giriş Yapın.</a></div>
+                {% endif %}         
+              </form>
+          </div>
+        </div>
+        <!--/.Reply-->
+        {% if comments %}
+        <!--Comments-->
+            <div class="card card-comments mb-3 wow fadeIn">
+                
+                  <div class="card-body">
+                    {% for comment in comments  %}
+                    <div class="media d-block d-md-flex mt-4">
+                      <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                        <hr>
+                            <h5 class="mt-0 font-weight-bold">{{comment.comment_author}}
+                              <small>{{comment.comment_date}} Tarihinde Yayınlandı</small>
+                                <a href="" class="pull-right">
+                                    <i class="fa fa-reply"></i>
+                                </a>
+                            </h5>
+                            {{comment.comment_content}}
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                      
+                      
+                      
+
+                  </div>
+            </div>
+          {% else %}
+            <div class="alert alert-danger">Bu Makalede Herhangi Bir Yorum Yok.</div>
+          {% endif %}
+            
+
+      </div>
+
+
+
+      <div class="col-lg-4">
+        <div class="sidebar wow fadeInRight" data-wow-duration="1.5">
+          <h3 class="sidebar-title"> Kategoriler </h3>
+          {% if categories %}
+            {% for category in categories  %}
+              <li><a href="category/?category={{category.id}}">{{category.name}}</a></li>
+            {% endfor %}
+          {% endif %}
+          <hr>
+          <h3 class="sidebar-title"> Diğer Yazılar</h3>
+          {% if articles %}
+            {% for article in articles  %}
+            <div class="sidebar-item recent-posts">
+              <div class="post-item clearfix">
+                <img src="{{article.article_image.url }}" alt="Makale resmi">
+                <h4 class="text-success"><a href="{% url 'Article:detail' article.id %}"> {{article.title}} </a></h4>
+                <time datetime="2020-01-01"> {{article.created_date}} </time>
+                <a  style="float: right;" href="{% url 'Article:detail' article.id %}"> Devamını Oku</a>
+              </div>
+              <hr>
+            </div>
+            {% endfor %}
+          
+          {% endif %}
+        </div>
+      </div>
+      <!-- Sidebar Widgets Column -->
+      
+    </div>
+
+        
+      
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  
+
+
+{% endblock body %}
+
+
+

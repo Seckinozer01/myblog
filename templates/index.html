@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<style>
+  .header {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-height: 350px;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    color: #fff;
+    background-color: #777;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+}
+.header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+</style>
+
+<title>Seçkin Özer</title>
+
+    
+    <div class="container" >
+
+      <div class="row">
+      {% if articles %}
+      
+      
+        
+      
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 wow fadeInLeft" data-wow-duration ="1.5s">
+
+         <br>
+         {% for article in articles %}
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            {% if article.article_image %}
+            <img class="card-img-top "  src="{{article.article_image.url }}" alt="Card image cap">
+            
+            {% else %}
+            <img class="card-img-top" src="../static/img/resim-yok.jpg" alt="bu makalede resim yok">
+            
+            {% endif %}
+            
+            <div class="card-body">
+              <h2 class="card-title"><a href="{% url 'Article:detail' article.id %}">{{article.title}}</a> </h2>
+              <hr>
+              <p class="card-text">{{article.content|safe|truncatewords:50}}</p>
+              <a href="{% url 'Article:detail' article.id %}" class="btn btn-primary">Devamını Oku →</a>
+            </div>
+            <div class="card-footer text-muted">
+              Yayınlayan :<a href="/about"> @{{article.author.username}}</a>
+               |
+              Kategori :<a href="">{{article.category}}</a>
+              |
+              Yayınlanma Tarihi : {{article.created_date}}
+              
+            </div>
+          </div>
+          {% endfor %}
+          
+          <!-- Blog Post -->
+          
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4" style="position: static;">
+
+          <!-- Search Widget -->
+          
+
+          {% else %}
+          <div class="alert alert-danger">
+            Henüz Böyle Bir Makale Bulunmuyor
+          </div>
+          {% endif %}
+
+          <!-- Categories Widget -->
+          
+          <!-- Side Widget -->
+          
+          <div class="card my-4 wow fadeInRight" data-wow-duration="1.5s" style="position: static;">
+            <h5 class="card-header">Kategoriler</h5>
+            <div class="card-body">
+              <ul>
+                <li><a href="/">Tüm Kategoriler</a></li>
+                {% for category in categories  %}
+                    <li><a href="category/?category={{category.id}}">{{category.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="card my-4 wow fadeInRight" data-wow-duration="1.5s">
+            <h5 class="card-header">Yazılım Dünyası Size Bir Tık Uzakta</h5>
+            <div class="card-body">
+              {% if request.user.is_authenticated %}
+                <a href="/user/logout" class="btn btn-danger">Çıkış Yap</a>
+
+              {% else %}
+              <a href="/user/login" class="btn btn-success"> Giriş Yap</a>
+              <a href="/user/register" class="btn btn-primary"> Kaydolun</a>
+              {% endif %}  
+            </div>
+          </div>
+ <!-- Side Widget -->
+         
+        </div>
+          
+      </div>
+      <!-- /.row -->
+
+    </div>
+    
+
+    
+
+{% endblock  %}
