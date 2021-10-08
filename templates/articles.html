@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seçkin Özer | Hakkında">
+  <meta name="keywords" content="Seçkin , ÖZER , Blog">
+  <link rel="stylesheet" href=" {% static 'css/articles.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/detail.css' %} ">
+  <title>Blog</title>
+</head>
+<body>
+  <section class="d-flex align-items-center hero">
+    <div class="container position-relative wow fadeInLeft" data-wow-duration="1.2s" >
+      <h1>KİŞİSEL BLOĞUMA HOŞGELDİNİZ</h1>
+    </div>
+  </section>
+  <section>
+    
+    <div class="container" >
+      <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.2s" >
+        <div class="container">
+    
+          <div class="d-flex justify-content-between align-items-center">
+            <ol>
+              <li><a href="/articles">Tüm Kategoriler</a></li>
+              {% for category in categories  %}
+                    <li><a href="/category/?category={{category.id}}">{{category.name}}</a></li>
+                {% endfor %}
+            </ol>
+          </div>
+    
+        </div>
+      </section><!-- End Blog Section -->
+      <div class="row">
+        
+      {% if articles %}
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 wow fadeInLeft" data-wow-duration ="1.5s">
+         <br>
+         {% for article in articles %}
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            {% if article.article_image %}
+              <img class="card-img-top "  src="{{article.article_image.url }}" alt="Card image cap">
+            {% else %}
+              <img class="card-img-top" src=" ../static/img/none.jpg " alt="bu makalede resim yok">
+            {% endif %}
+            
+            <div class="card-body">
+              <h2 class="card-title"><a href="{% url 'Article:detail' article.id %}">{{article.title}}</a> </h2>
+              <hr>
+              <p class="card-text">{{article.content|safe|truncatewords:50}}</p>
+              <a href="{% url 'Article:detail' article.id %}" class="btn btn-primary">Devamını Oku →</a>
+            </div>
+            <div class="card-footer text-muted">
+              Yayınlayan :<a href="/about"> @{{article.author.username}}</a>
+               |
+              Kategori :<a href="">{{article.category}}</a>
+              |
+              Yayınlanma Tarihi : {{article.created_date}}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-lg-4">
+          <div class="sidebar wow fadeInRight" data-wow-duration="1.5">
+            <h3 class="sidebar-title"> Diğer Yazılar</h3>
+            {% if articles %}
+              {% for article in articles  %}
+              <div class="sidebar-item recent-posts">
+                <div class="post-item clearfix">
+                  <img src="{{article.article_image.url }}" alt="Makale resmi">
+                  <h4 class="text-success"><a href="{% url 'Article:detail' article.id %}"> {{article.title}} </a></h4>
+                  <time datetime="2020-01-01"> {{article.created_date}} </time>
+                  <a  style="float: right;" href="{% url 'Article:detail' article.id %}"> Devamını Oku</a>
+                </div>
+                <hr>
+              </div>
+              {% endfor %}
+            
+            {% endif %}
+          </div>
+          <div class="sidebar wow fadeInRight" data-wow-duration="1.5">
+            
+            <h3 class="sidebar-title"> Seçkin Şevki Özer</h3>
+              <div class="sidebar-item recent-posts">
+                <div class="post-item clearfix">
+                  <img src="{% static 'img/seckin.png' %} " alt="Makale resmi">
+                  
+                  <h4 class="">
+                    <ul>
+                      <li>Erciyes Üniversitesi Mekatronik Mühendisliği 3. Sınıf </li>
+                      <li>Software Developer</li>
+                      <li>Founder of TARA Asistan</li>
+                    </ul>
+                    </h4>
+                  <a  style="float: right;" href="/about/"> Devamını Oku</a>
+                </div>
+                <hr>
+              </div>
+          </div>
+        </div>
+          {% else %}
+          <div class="alert alert-danger">
+            Henüz Böyle Bir Makale Bulunmuyor
+          </div>
+          {% endif %}
+      </div>
+      <!-- /.row -->
+  
+    </div>
+    
+  </section>
+  
+      
+</body>
+</html>
+
+{% endblock  %}

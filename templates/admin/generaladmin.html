@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {% static 'css/dashboard.css' %} ">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    $(document).ready(function() {
+      $('#dataTable').DataTable();
+    });
+    
+  </script>
+  <title>Yönetim Paneli</title>
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <section class="d-flex align-items-center hero">
+      <div class="container text-center position-relative wow fadeInLeft" data-wow-duration="1.2s" >
+        <h1>YÖNETİM PANELİ</h1>
+      </div>
+    </section>
+  <div class="sb-nav-fixed"> 
+      <div id="layoutSidenav_content">
+          <main>
+              <div class="container-fluid">
+                  
+                  <ol class="breadcrumb mb-4">
+                      <li class="breadcrumb-item active">Yönetim Paneli</li>
+                      <li class="breadcrumb-item active "> Oturum Açan : </li>
+                      <a href="/"><li class="breadcrumb-item "> {{ request.user.username}}</li></a>
+                  </ol>
+                  
+                  {% if articles %}
+                      
+                  
+                  <div class="card mb-4">
+                      <div class="card-header">
+                          <i class="bi bi-table mr-1"></i>
+                          Paylaşılan Yazılar
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                      <th>Makale Adı</th>
+                                      <th>Yazar</th>
+                                      <th>İD</th>
+                                      <th>Kategori</th>
+                                      <th>Makale İçeriği</th>
+                                      <th>Yayınlanma Tarihi</th>
+                                      <th>Düzenle</th>
+                                      <th>Sil</th>
+                                      </tr>
+                                  </thead>
+                                  
+                                  <tbody>
+                                      {% for article in articles  %}
+                                      
+                                      
+                                      <tr>
+                                          <td><a href="/articles/article/{{article.id}}">{{article.title}}</a> </td>
+                                          <td>{{article.author}}</td>
+                                          <td> {{article.id}} </td>
+                                          <td> {{article.category}} </td>
+                                          <td>{{article.content|safe|truncatewords:15}}</td>
+                                          <td> {{article.created_date}} </td>
+                                          <td><a class="btn btn-primary " href="/articles/update/{{article.id}}">Düzenle</a></td>
+                                          <td><a class="btn btn-primary" href="/articles/delete/{{article.id}}">Sil </a></td>
+                                      </tr>
+                                      {% endfor %}
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class="card-header">
+                      <i class="fa fa-table mr-1"></i>
+                      Paylaşılan Yazılar
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <thead>
+                                  <tr>
+                                  <th>Makale Adı</th>
+                                  <th>İD</th>
+                                  <th>Kategori</th>
+                                  <th>Makale İçeriği</th>
+                                  <th>Yayınlanma Tarihi</th>
+                                  <th>Düzenle</th>
+                                  <th>Sil</th>
+                                  </tr>
+                              </thead>
+                              
+                              <tbody>
+                                  <div class="alert alert-danger">Henüz Bir Yazınız Yok! <a href="/articles/addarticle">Bir Yazı Paylaşın</a> </div>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  {% endif %}
+                  {% if users %}
+                  <div class="card mb-4">
+                      <div class="card-header">
+                          <i class="bi bi-table mr-1"></i>
+                          Kayıtlı Kullanıcılar
+                      </div>
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                      <th>Kullanıcı Adı</th>
+                                      <th>İD</th>
+                                      <th>E-Posta</th>
+                                      <th>Admin Yetkisi</th>
+                                      <th>SuperUser</th>
+                                      <th>Kayıt Tarihi</th>
+                                      <th>Detay</th>
+                                      </tr>
+                                  </thead> 
+                                  <tbody>
+                                      {% for user in users  %}
+                                      <tr>
+                                          <td><a href="/articles/article/{{article.id}}">{{user.username}}</a> </td>
+                                          <td> {{user.id}} </td>
+                                          <td> {{user.email}} </td>
+                                          <td>{{user.is_admin}}</td>
+                                          <td> {{user.is_superuser}} </td>
+                                          <td> {{user.register_date}} </td>
+                                          <td><a class="btn btn-primary" href="/admin/user/hesap/{{user.id}}">Detayları Görüntüle</a></td>
+                                      </tr>
+                                      {% endfor %}
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  {% else %}
+                  <div class ="row">
+                      <div class="col-md-10 offset-md-3">
+                          <div class="col-lg-8">
+                              <div class = "alert alert-danger">
+                                      Kullanıcı Bulunamadı
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endif %}
+                  
+              </div>
+          </main>
+          
+      
+      </div>
+  </div>
+</body>
+</html>
+{% endblock body %}

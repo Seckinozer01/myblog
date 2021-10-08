@@ -1,296 +1,82 @@
 {% extends "layout.html" %}
-{% load crispy_forms_tags %}
+{% load static %}
 {% block body %}
-<style>
-    
-    .custom{
-        margin-top: 30px;
-        margin:90px 20px;
-    }
 
-    
-    
-    .team .team-item {
-        text-align: left;
-        margin-bottom: 30px
-    }
-    
-    .team .team-item figure {
-        position: relative;
-        overflow: hidden
-    }
-    
-    img {
-        max-width: 100%
-    }
-    
-    .team .team-item figure figcaption {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        background: rgba(9, 9, 9, .6);
-        -webkit-transition: all .5s ease;
-        -moz-transition: all .5s ease;
-        transition: all .5s ease
-    }
-    
-    .team .team-item figure figcaption .info {
-        position: absolute;
-        color: #fff;
-        float: left;
-        bottom: 40px;
-        left: 20px;
-        margin-left: -80px;
-        -webkit-transition: all .5s ease;
-        -moz-transition: all .5s ease;
-        transition: all .5s ease
-    }
-    
-    .team .team-item figure:hover figcaption {
-        opacity: 1
-    }
-    
-    .team .team-item figure:hover figcaption .info {
-        margin-left: 0
-    }
-    
-    .team .team-item figure figcaption .info h3 {
-        font-size: 20px
-        
-    }
-    
-    .team .team-item figure figcaption .info p {
-        color: #fff
-    }
-    
-    .team .team-item figure:hover figcaption .social {
-        margin-bottom: 0
-    }
-    
-    .team .team-item figure figcaption .social {
-        position: absolute;
-        float: right;
-        bottom: 20px;
-        margin-bottom: 0px;
-        right: 5px;
-        -webkit-transition: all .5s ease;
-        -moz-transition: all .5s ease;
-        transition: all .5s ease
-    }
-    
-    .team .team-item figure figcaption .social a {
-        color: #fff;
-        font-size: 15px;
-        width: 36px;
-        height: 36px;
-        background: #3f51b5;
-        display: inline-block;
-        text-align: center;
-        line-height: 36px;
-        border-radius: 2px
-    }
-    
-    .second-background{
-        background: 
-        
-       
-        url('../static/img/bg-pattern.png');
-        height: auto;
-        width: 100%;
-      }
 
-    
-      body{
-        background-image: url(../static/img/bg-pattern.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .contactform{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seçkin Özer | Hakkında">
+  <meta name="keywords" content="Seçkin , ÖZER , Blog">
+  <link rel="stylesheet" href=" {% static 'css/about.css' %} ">
+  <title>Hakkımda | Seçkin Özer</title>
+</head>
+<body>       
+    <section  class="about">
+            <div class="container" >
 
-      margin: 10%;
-    }
-    
-      
-      .typing-demo {
-        width: 27ch;
-        animation: typing 2s steps(54), blink .5s step-end infinite alternate;
-        white-space: nowrap;
-        overflow: hidden;
-        font-family: monospace;
-        font-size: 2em;
-      }
-      
-      @keyframes typing {
-        from {
-          width: 0
-        }
-      }
-          
-      @keyframes blink {
-        50% {
-          border-color: transparent
-        }
-      }
-</style>
-<title>REEZO|Hakkımızda</title>
-
-<!------ Include the above in your HEAD tag ---------->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-            <script>
-              new WOW().init();
-              </script>
-    <script>
-      
-        $(window).on("scroll", function() {
-            if ($(this).scrollTop() > 10 ) {
-                $("nav.navbar").addClass("mybg-dark");
-                $("nav.navbar").addClass("navbar-shrink");
-
-            }
-            else {
-                $("nav.navbar").removeClass("mybg-dark");
-                $("nav.navbar").removeClass("navbar-shrink");
-
-            }
-
-        });
-    </script>
-<body class="second-background">
-    
-    
-    <main class="second-background">
-        
-        <section class="team section custom ">
-            <div class="container">
-                
-               
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="team-item wow fadeInLeft" data-wow-duration="1.6s">
-                            <figure>
-                                <img src="../static/img/seckin.png"   alt="">
-                                <figcaption>
-                                    <div class="info">
-                                        <h3>Seçkin Şevki Özer</h3>
-                                        <p>Girişimci | Software Developer</p>
-                                    </div>
-                                    
-                                    <div class="social">
-                                        <a href="https://twitter.com/seckinozer0" class="twitter" data-abc="true"><i class="bi bi-twitter"></i></a>
-                                        <a href="https://www.instagram.com/seckinozer0/" class="instagram" data-abc="true"><i class="bi bi-instagram"></i></a>
-                                        <a href="https://www.linkedin.com/in/seçkin-şevki-özer-302376181/" class="linked-in" data-abc="true"><i class="bi bi-linkedin"></i></a>
+                <section class="team section custom ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="team-item wow fadeInLeft" data-wow-duration="1.6s">
+                                    <figure>
+                                        <img src="../static/img/seckin.png"   alt="">
+                                        <figcaption>
+                                            <div class="info">
+                                                <h3>Seçkin Şevki Özer</h3>
+                                                <p>Girişimci | Software Developer</p>
+                                            </div>
+                                            
+                                            <div class="social">
+                                                <a href="https://twitter.com/seckinozer0" class="twitter" data-abc="true"><i class="bi bi-twitter"></i></a>
+                                                <a href="https://www.instagram.com/seckinozer0/" class="instagram" data-abc="true"><i class="bi bi-instagram"></i></a>
+                                                <a href="https://www.linkedin.com/in/seçkin-şevki-özer-302376181/" class="linked-in" data-abc="true"><i class="bi bi-linkedin"></i></a>
+                                                
+                                            </div>
+                                            
+                                        </figcaption>
                                         
-                                    </div>
+                                    </figure>
                                     
-                                </figcaption>
-                                
-                            </figure>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="team-item " style="width: 175% ;" data-wow-duration="1.6s">
-                            <figure>
-                                <br><br><br><br>
-                                <div class="" >
-                                    
-                                    <div class="typing-demo">
-                                        <h2 class="title-overview " style="float: left;" >Kişisel Bloğuma Hoşgeldiniz<hr> </h2>
-                                    </div>
-                                    <p class="subtitle-overview wow fadeInLeft" style = "float: left; font-size:17.5px;" data-wow-duration="1.6s"> Herkese Merahaba, <br> 
-                                        Öncelikle blogumu ziyaret ettiğiniz için teşekkür ederim. Ben Seçkin Şevki Özer Erciyes Üniversitesi Mekatronik Mühendisliği 3. Sınıf öğrencisiyim.Bu Blogu temel mühendislik bilimleri , programlama ve yazılım öğrenmek isteyenlerin uğrak noktası olması ve aynı zamanda Türkiye'de mühendislik , programlama ve yazılım bilimlerinin yükselmesine katkı sunmak amacıyla ; yazılım , tasarım , elektronik ve sosyal alanlardaki bilgi ve deneyimlerimi sizin ile paylaşmak için kurdum.
-                                    </p>
-                                    <p class="subtitle-overview wow fadeInLeft" style = "float: left; font-size:17.5px;" data-wow-duration="1.6s"> 
-                                        Birlikte yazmaya, öğrenmeye , hata almaya ve çözmeye var mısınız? Haydi o zaman teknolojiyi baştan yazmaya başlayalım.
-                                    </p>
                                 </div>
-                            </figure>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
-        </section>        
-    </main>
-    <div class="container ">
-        <div class="col-md-9 mb-md-0 mb-5 contactform">
-            <h2 class="text-primary text-center " > Benimle İletişime Geçin</h2>
-            <hr>
-            <form id="contact-form" method="post">
-                {% csrf_token %}
-    
-                <!--Grid row-->
-                <div class="row">
-    
-                    <!--Grid column-->
-                    <div class="col-md-12">
-                        <div class="md-form mb-4">
-                            <input type="text"  name="support_name" class="form-control" required="True" placeholder="İsim Soyisim">
-                        </div>
-                        
-                    </div>
-                    <!--Grid column-->
-                    <!--Grid column-->
-                    <div class="col-md-12">
-                        <div class="md-form mb-4">
-                            <input type="email"  name="support_email" class="form-control" placeholder="E-Posta">
-                        </div>   
-                    </div>
-                    
-                    <div class="col-md-12">
-                        <div class="md-form mb-4">
-                            <input type="text" name="support_phone" class="form-control" placeholder="Telefon Numarası">
-                        </div>   
-                    </div>
-                    <!--Grid column-->
-                  
-                </div>
-                <!--Grid row-->
-               
-                <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-4">
-                            <input type="text"  name="support_tittle" class="form-control" placeholder="Konu">
+                                
+                            </div>
                             
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="team-item " style="width: 175% ;" data-wow-duration="1.6s">
+                                    <figure>
+                                        <br><br><br><br>
+                                        <div class="" >
+                                            
+                                            <div class="typing-demo">
+                                                <h2 class="title-overview text-white " style="float: left;" >Kişisel Bloğuma Hoşgeldiniz<hr style="background: #fff;" > </h2>
+                                            </div>
+                                            <p class="subtitle-overview wow fadeInLeft text-white" style = "float: left; font-size:17.5px;" data-wow-duration="1.6s"> Herkese Merahaba, <br> 
+                                                Öncelikle blogumu ziyaret ettiğiniz için teşekkür ederim. Ben Seçkin Şevki Özer Erciyes Üniversitesi Mekatronik Mühendisliği 3. Sınıf öğrencisiyim.Bu Blogu temel mühendislik bilimleri , programlama ve yazılım öğrenmek isteyenlerin uğrak noktası olması ve aynı zamanda Türkiye'de mühendislik, programlama ve yazılım bilimlerinin yükselmesine katkı sunmak amacıyla; yazılım , tasarım , elektronik ve sosyal alanlardaki bilgi ve deneyimlerimi sizin ile paylaşmak için kurdum.
+                                            </p>
+                                            <p class="subtitle-overview wow fadeInLeft text-white" style = "float: left; font-size:17.5px;" data-wow-duration="1.6s"> 
+                                                Birlikte yazmaya, öğrenmeye , hata almaya ve çözmeye var mısınız? Haydi o zaman teknolojiyi baştan yazmaya başlayalım.
+                                            </p>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        
                         </div>
                     </div>
+                </section>        
                 </div>
-                <!--Grid row-->
-                
-                <!--Grid row-->
-                <div class="row">
-    
-                    <!--Grid column-->
-                    <div class="col-md-12">
-    
-                        <div class="md-form ">
-                            <textarea type="text"  name="support_content" rows="2" placeholder="Mesajınızı Yazınız" required="True" style="height: 100px;" class="form-control md-textarea"></textarea>
-                        </div>
-    
-                    </div>
-                </div>
-                <!--Grid row-->
-                <br>
-                <div class="text-center text-md-left">
-                    <input type="submit" name="btnSubmit" placeholder="Gönder" class="btn-primary container " style="width: 100%; height:30px;">
-                </div>
-            </form>
+
+            </div>
             
-            
-        </div>
-    </div>
-<br><br>
-<br>
-</body> 
-    
-    
-    
+    </section>
+</body>
+</html>
     
     
 {% endblock %}
+

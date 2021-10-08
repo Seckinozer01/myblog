@@ -1,0 +1,50 @@
+.typing-demo {
+  width: auto;
+  animation: typing 2s steps(54), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 5px;
+}
+
+.hero {
+  width: 100%;
+  height: 50vh;
+  background: url("../img/cubes-2492010_1280.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+.hero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.hero .container {
+  padding-top: 70px;
+  
+}
+
+.hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hero h2 {
+  color: #eee;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+
+ 
+

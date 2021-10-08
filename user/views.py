@@ -61,13 +61,18 @@ def loginuser(request):
     }
     user = request.user
     if user.is_authenticated:
-        return redirect ("Article:dashboard")
+        if user.is_superuser:
+            return redirect ("Article:admindashboard")
+        else:
+            return redirect ("Article:dashboard")
+            
     
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
+           
             user = authenticate(email = email,password=password)
             if user is None:
                 messages.info(request,"Kullanıcı Adı veya Parola Hatalı")

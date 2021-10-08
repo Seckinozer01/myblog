@@ -1,8 +1,4 @@
 from django.db import models
-
-
-from django.db import models
-
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager
 
 
@@ -41,9 +37,10 @@ class MyAccountManager (BaseUserManager):
 
 
 # Create your models here.
-class Hesap(AbstractBaseUser):
-    email = models.EmailField(verbose_name = "E-posta",max_length=60,unique = True )
+class Account(AbstractBaseUser):
+    
     username = models.CharField(unique = True, max_length=50,verbose_name = "Kullanıcı Adı") 
+    email = models.EmailField(verbose_name = "E-posta",max_length=60,unique = True )
     register_date =  models.DateTimeField(verbose_name="Kayıt Tarihi", auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="Son Oturum" ,auto_now=True)
     is_admin =      models.BooleanField(default = False)
@@ -51,7 +48,8 @@ class Hesap(AbstractBaseUser):
     is_staff =      models.BooleanField(default = False)
     is_superuser =  models.BooleanField(default = False)
     
-    
+    def get_all_users():
+        return Account.objects.all()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]

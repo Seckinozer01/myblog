@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seçkin Özer Benimle İletişime Geçin">
+  <meta name="keywords" content="Seçkin ">
+  <link rel="stylesheet" href=" {% static 'css/contact.css' %} ">
+  <title>Benimle İletişime Geçin</title>
+</head>
+<body>
+  <section class="d-flex align-items-center hero">
+    <div class="container position-relative" >
+        <div class="container contact-form">
+            <div class="row ">
+              <div class="col-lg-8 col-lg-offset-2">
+                <form id="contact-form" method="post" action="" role="form">
+                {% csrf_token %}
+                <div class="messages"></div>
+                <div class="highline">
+                    <h3>İletişim</h3>
+                </div>
+                <hr style="margin-left: 350px; background:white;">
+                <div class="controls">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_name">İsim Soyisim*</label>
+                        <input id="form_name" type="text" name="support_name" class="form-control" placeholder="İsim Soyisim *" required="required" data-error="Firstname is required.">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="form_email">E-Posta *</label>
+                          <input id="form_email" type="email" name="support_email" class="form-control" placeholder="Lütfen Geçerli Bir E-Posta Giriniz *" required="required" data-error="Valid email is required.">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row" >
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="form_email">Telefon Numarası *</label>
+                          <input id="form_email" type="text" name="support_phone" class="form-control" placeholder="Lütfen Geçerli Bir Telefon Numarası Giriniz *" required="required" data-error="Valid email is required.">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="form_message">Mesajınız *</label>
+                        <textarea id="form_message" name="support_content" class="form-control" placeholder="Lütfen Mesajınızı Giriniz *" rows="4" required data-error="Please,leave us a message."></textarea>
+                        <div class="help-block with-errors"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <input type="submit" class="btn btn-success btn-send" value="Gönder">
+                    </div>
+                  </div>       
+                </div>
+                </form>
+                <div class="underline">
+                    <h6> blog.seckinozer@gmail.com</i></h6>
+                </div>
+              </div>     
+            </div>
+          </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footermenu">
+        <div class="label">Referanslar</div>
+        <div class="spacer"></div>
+        <div class="item"><a style="text-decoration:none" class="text-white" href="https://reezoteknoloji.pythonanywhere.com"> <i class="bi bi-bookmarks"> REEZO Teknoloji</i> </a></div>
+        <div class="item"><a style="text-decoration:none" class="text-white" href="https://reezoteknoloji.pythonanywhere.com/service/taraasistan"><i class="bi bi-bookmarks"> TARA Asistan</i> </div>
+        <div class="item"><a style="text-decoration:none" class="text-white" href="https://www.instagram.com/seckinozer0/"><i class="bi bi-instagram"> @seckinozer0</i></div>
+        <div class="item"><a style="text-decoration:none" class="text-white" href="https://twitter.com/seckinozer0"><i class="bi bi-twitter"> @seckinozer0</i></div>
+        <div class="item"><a style="text-decoration:none" class="text-white" href="https://www.linkedin.com/in/seçkin-şevki-özer-302376181/"><i class="bi bi-linkedin"> Seçkin Şevki Özer</i></div>
+        <div class="item"><a style="text-decoration:wavy" class="text-white" href="https://github.com/Seckinozer01"><i class="bi bi-github"> Seçkin Şevki Özer</i></div>
+      </div>
+  </footer>
+</body>
+</html>
+{% endblock body %}

@@ -9,12 +9,13 @@ app_name = "Article"
 urlpatterns = [
     path('',views.articles,name = "articles"),
     path('dashboard/',views.dashboard,name = "dashboard"),
+    path('admindashboard/',views.admindashboard,name = "admindashboard"),
+    path('generaladmin/',views.adminarticles,name = "adminarticles"),
     path('addarticle/',views.addArticle,name = "addarticle"),
     path('article/<int:id>/',views.detail,name = "detail"),
     path('update/<int:id>/',views.updateArticle,name = "update"),
     path('delete/<int:id>/',views.deleteArticle,name = "delete"),
     path('comment/<int:id>/',views.addComment,name = "comment"),
-    path('category/',views.categorydetail,name = "category"),
     
     
     

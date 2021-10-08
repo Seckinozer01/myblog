@@ -1,0 +1,32 @@
+:root {
+    --menu-width: 37.5em; /* Width of menu */
+    --items: 4; /* Number of items you have */
+    --item-width: calc(var(--menu-width) / var(--items));
+}
+
+#topbar {
+    height: 40px;
+    font-size: 14px;
+    transition: all 0.5s;
+    color: rgba(255, 255, 255, 0.6);
+  }
+#topbar.topbar-scrolled {
+    top: -40px;
+ }
+.nav-bg{
+    background: rgba(12, 11, 9, 0.6);
+    border-bottom: 1px solid rgba(12, 11, 9, 0.6);
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 15px 0;
+    top: 40px;
+}
+
+
+
+
+
+
+
+
+

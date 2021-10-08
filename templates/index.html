@@ -1,136 +1,239 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block body %}
 
+
 <style>
-  .header {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    min-height: 350px;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    color: #fff;
-    background-color: #777;
+  
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../static/img/hero-bg.jpg") top center;
+  background-size: cover;
+  position: relative;
 }
 
-h1 {
-    font-size: 3.5rem;
-    font-weight: 300;
-    line-height: 1.1;
-}
-.header h1 a {
-    color: #fff;
-    text-decoration: none;
+.hero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
+.hero .container {
+  padding-top: 70px;
+}
 
+.hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hero h2 {
+  color: #eee;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 10px 28px;
+  transition: 0.5s;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.hero .btn-get-started:hover {
+  background: #1628cc;
+  border-color: #1628cc;
+}
 
 </style>
-
-<title>Seçkin Özer</title>
-
+<style>
     
-    <div class="container" >
 
-      <div class="row">
-      {% if articles %}
-      
-      
-        
-      
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 wow fadeInLeft" data-wow-duration ="1.5s">
 
-         <br>
-         {% for article in articles %}
-          <!-- Blog Post -->
-          <div class="card mb-4">
-            {% if article.article_image %}
-            <img class="card-img-top "  src="{{article.article_image.url }}" alt="Card image cap">
-            
-            {% else %}
-            <img class="card-img-top" src="../static/img/resim-yok.jpg" alt="bu makalede resim yok">
-            
-            {% endif %}
-            
-            <div class="card-body">
-              <h2 class="card-title"><a href="{% url 'Article:detail' article.id %}">{{article.title}}</a> </h2>
-              <hr>
-              <p class="card-text">{{article.content|safe|truncatewords:50}}</p>
-              <a href="{% url 'Article:detail' article.id %}" class="btn btn-primary">Devamını Oku →</a>
-            </div>
-            <div class="card-footer text-muted">
-              Yayınlayan :<a href="/about"> @{{article.author.username}}</a>
-               |
-              Kategori :<a href="">{{article.category}}</a>
-              |
-              Yayınlanma Tarihi : {{article.created_date}}
-              
-            </div>
-          </div>
-          {% endfor %}
-          
-          <!-- Blog Post -->
-          
+  .footermenu {
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      display: inline-block;
+      cursor: pointer;
+      pointer-events: none;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+  }
+  .footermenu:hover {
+      pointer-events: all;
+    }
+  
+  .label {
+    display: inline-block;
+    cursor: pointer;
+    pointer-events: all;
+  }
+  .spacer {
+    display: inline-block;
+    width: 80px;
+    margin-left: 15px;
+    margin-right: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+  }
+  .spacer:before {
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid #ffffff;
+    height: 1px;
+    width: 0%;
+    transition: width 0.25s ease;
+    transition-delay: 0.7s;
+  }
+  .item {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+    top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease, top 0.5s ease;
+    transition-delay: 0;
+  }
+  .item a:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background-color: #1768ff96;
+      visibility: hidden;
+      width: 0px;
+      transition: all 0.3s ease-in-out 0s;
+    }
+  span {
+    transition: color 0.5s ease;
+  }
+  .item:hover span {
+    color: #ff0000;
+  }
+  .menu:hover .spacer:before {
+    width: 100%;
+    transition-delay: 0s;
+  }
+  .footermenu:hover .item {
+    opacity: 1;
+    top: 0px;
+  }
+  .item:nth-child(1) {
+    transition-delay: 0.45s;
+  }
+  .item:nth-child(2) {
+    transition-delay: 0.4s;
+  }
+  .item:nth-child(3) {
+    transition-delay: 0.35s;
+  }
+  .item:nth-child(4) {
+    transition-delay: 0.3s;
+  }
+  .item:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+  .item:nth-child(6) {
+    transition-delay: 0.2s;
+  }
+  .item:nth-child(7) {
+    transition-delay: 0.15s;
+  }
+  .item:nth-child(8) {
+    transition-delay: 0.1s;
+  }
+  .item:nth-child(9) {
+    transition-delay: 0.05s;
+  }
+  .item:nth-child(10) {
+    transition-delay: 0s;
+  }
+  .footermenu:hover .item:nth-child(1) {
+    transition-delay: 0.25s;
+  }
+  .footermenu:hover .item:nth-child(2) {
+    transition-delay: 0.3s;
+  }
+  .footermenu:hover .item:nth-child(3) {
+    transition-delay: 0.35s;
+  }
+  .footermenu:hover .item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .footermenu:hover .item:nth-child(5) {
+    transition-delay: 0.45s;
+  }
+  .footermenu:hover .item:nth-child(6) {
+    transition-delay: 0.5s;
+  }
+  .footermenu:hover .item:nth-child(7) {
+    transition-delay: 0.55s;
+  }
+  .footermenu:hover .item:nth-child(8) {
+    transition-delay: 0.6s;
+  }
+  .footermenu:hover .item:nth-child(9) {
+    transition-delay: 0.65s;
+  }
+  .footermenu:hover .item:nth-child(10) {
+    transition-delay: 0.7s;
+  }
+  </style>
 
-        </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4" style="position: static;">
-
-          <!-- Search Widget -->
-          
-
-          {% else %}
-          <div class="alert alert-danger">
-            Henüz Böyle Bir Makale Bulunmuyor
-          </div>
-          {% endif %}
-
-          <!-- Categories Widget -->
-          
-          <!-- Side Widget -->
-          
-          <div class="card my-4 wow fadeInRight" data-wow-duration="1.5s" style="position: static;">
-            <h5 class="card-header">Kategoriler</h5>
-            <div class="card-body">
-              <ul>
-                <li><a href="/">Tüm Kategoriler</a></li>
-                {% for category in categories  %}
-                    <li><a href="category/?category={{category.id}}">{{category.name}}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="card my-4 wow fadeInRight" data-wow-duration="1.5s">
-            <h5 class="card-header">Yazılım Dünyası Size Bir Tık Uzakta</h5>
-            <div class="card-body">
-              {% if request.user.is_authenticated %}
-                <a href="/user/logout" class="btn btn-danger">Çıkış Yap</a>
-
-              {% else %}
-              <a href="/user/login" class="btn btn-success"> Giriş Yap</a>
-              <a href="/user/register" class="btn btn-primary"> Kaydolun</a>
-              {% endif %}  
-            </div>
-          </div>
- <!-- Side Widget -->
-         
-        </div>
-          
-      </div>
-      <!-- /.row -->
-
+<section class="d-flex align-items-center hero" >
+  <div class="container position-relative wow fadeInLeft " data-wow-duration="1.5s" >
+    <h1> KİŞİSEL BLOĞUMA HOŞGELDİNİZ</h1>
+    <h2>Haydi geleceği birlikte yazalım</h2>
+    <a href="/articles" class="btn-get-started scrollto">Başlayın</a>
+  </div>
+</section>
+<footer>
+  <div class="footermenu">
+      <div class="label">Referanslar</div>
+      <div class="spacer"></div>
+      <div class="item"><a style="text-decoration:none" class="text-white" href="https://reezoteknoloji.pythonanywhere.com"> <i class="bi bi-bookmarks"> REEZO Teknoloji</i> </a></div>
+      <div class="item"><a style="text-decoration:none" class="text-white" href="https://reezoteknoloji.pythonanywhere.com/service/taraasistan"><i class="bi bi-bookmarks"> TARA Asistan</i> </div>
+      <div class="item"><a style="text-decoration:none" class="text-white" href="https://www.instagram.com/seckinozer0/"><i class="bi bi-instagram"> @seckinozer0</i></div>
+      <div class="item"><a style="text-decoration:none" class="text-white" href="https://twitter.com/seckinozer0"><i class="bi bi-twitter"> @seckinozer0</i></div>
+      <div class="item"><a style="text-decoration:none" class="text-white" href="https://www.linkedin.com/in/seçkin-şevki-özer-302376181/"><i class="bi bi-linkedin"> Seçkin Şevki Özer</i></div>
+      <div class="item"><a style="text-decoration:wavy" class="text-white" href="https://github.com/Seckinozer01"><i class="bi bi-github"> Seçkin Şevki Özer</i></div>
     </div>
-    
+</footer>
 
-    
+<!-- End Hero -->
+<a href="#" class="back-to-top"  ><i class="fa fa-arrow-up"></i></a>
 
-{% endblock  %}
+<!-- Vendor JS Files -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<script src="../static/js/jquery.easing.min.js"></script>
+
+
+<!-- Template Main JS File -->
+
+
+
+
+
+{% endblock body %}

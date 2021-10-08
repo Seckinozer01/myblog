@@ -1,37 +1,44 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block body %}
-<link rel="stylesheet" href=" {% static 'css/detail.css' %} ">
-
-<title> {{article.title}} </title>
-  <!-- Page Content -->
-  <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.5s" >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {{article.title}} </title>
+  <link rel="stylesheet" href=" {% static 'css/detail.css' %} ">
+</head>
+<body>
+  <style>
+    .hero {
+      width: 100%;
+      height: 50vh;
+      background: url(" {% static 'img/main.jpg' %} ") top center;
+      background-size: cover;
+      position: relative;
+    }
+  </style>
+<section class="d-flex align-items-center hero">
+  <div class="container position-relative wow fadeInLeft" data-wow-duration="1.2s" >
+    <h1 class="text-white" > {{article.title}} </h1>
+  </div>
+</section>
+  <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.2s" >
     <div class="container">
-
       <div class="d-flex justify-content-between align-items-center">
         <ol>
-          <li><a href="index.html">Blog</a></li>
-          <li><a href=""> {{article.category}} </a></li>
+          <li><a href="/articles">Blog</a></li>
+          <li><a href="/category/?category={{category.id}}"> {{article.category}} </a></li>
           <li> {{article.title}} </li>
         </ol>
       </div>
-
     </div>
   </section><!-- End Blog Section -->
-  <section class="breadcrumbs wow fadeInLeft" data-wow-duration="1.5s" >
-    <div class="container">
-
-      <div class="d-flex justify-content-between align-items-center">
-        <h2> {{article.title}} </h2>
-      </div>
-
-    </div>
-  </section><!-- End Blog Section -->
+  
   <div class="container ">
-
     <div class="row">
-
-      <!-- Post Content Column -->
       <div class="col-lg-8 post-detail wow fadeInLeft" data-wow-duration ="1.5s" >
         <div class="md-4" style="float: left;">
           <p class="lead md-4"> 
@@ -41,19 +48,17 @@
         <div style=" float:right">
           <p class="lead">Paylaşım Tarihi : {{article.created_date}}</p>
         </div>
-        
-        
-        <!-- Preview Image -->
         {% if article.article_image %}
         <img class="img-fluid rounded" src="{{article.article_image.url }}" alt="">
         {% endif %}
         <hr>
-        
-        <!-- Post Content -->
         <p class="lead">{{article.content|safe}}</p>
-        
         <hr>
-<!--Reply-->
+        {% if article.category.name == "Python" %}
+        <h3>python</h3>
+        {% else %}
+        <h3>başka</h3>
+        {% endif %}
         <div class="card mb-3 wow fadeIn">
           <div class="card-header font-weight-bold">Bu Makaleye Bir Yorum Ekleyin</div>
           <div class="card-body">
@@ -96,27 +101,18 @@
                     </div>
                     <hr>
                     {% endfor %}
-                      
-                      
-                      
-
                   </div>
             </div>
           {% else %}
             <div class="alert alert-danger">Bu Makalede Herhangi Bir Yorum Yok.</div>
           {% endif %}
-            
-
       </div>
-
-
-
       <div class="col-lg-4">
         <div class="sidebar wow fadeInRight" data-wow-duration="1.5">
           <h3 class="sidebar-title"> Kategoriler </h3>
           {% if categories %}
             {% for category in categories  %}
-              <li><a href="category/?category={{category.id}}">{{category.name}}</a></li>
+              <li><a href="?category={{category.id}}">{{category.name}}</a></li>
             {% endfor %}
           {% endif %}
           <hr>
@@ -136,22 +132,30 @@
           
           {% endif %}
         </div>
+        <div class="sidebar wow fadeInRight" data-wow-duration="1.5"> 
+          <h3 class="sidebar-title"> Seçkin Şevki Özer</h3>
+            <div class="sidebar-item recent-posts">
+              <div class="post-item clearfix">
+                <img src="{% static 'img/seckin.png' %} " alt="Makale resmi">
+                
+                <h4 class="">
+                  <ul>
+                    <li>Erciyes Üniversitesi Mekatronik Mühendisliği 3. Sınıf </li>
+                    <li>Software Developer</li>
+                    <li>Founder of TARA Asistan</li>
+                  </ul>
+                  </h4>
+                <a  style="float: right;" href="/about/"> Devamını Oku</a>
+              </div>
+              <hr>
+            </div>
+        </div>
       </div>
-      <!-- Sidebar Widgets Column -->
-      
     </div>
-
-        
-      
-
     </div>
-    <!-- /.row -->
-
   </div>
-  <!-- /.container -->
-
-  
-
+</body>
+</html>
 
 {% endblock body %}
 

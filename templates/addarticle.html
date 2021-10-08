@@ -1,164 +1,41 @@
 {% extends "layout.html" %}
-
+{% load static %}
 {% block body %}
 {% load crispy_forms_tags %}
-
-<style>
-    
-  .box {
-    width: 40%;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.2);
-    padding: 35px;
-    border: 2px solid #fff;
-    border-radius: 20px/50px;
-    background-clip: padding-box;
-    text-align: center;
-  }
-  
-  .button {
-    font-size: 1em;
-    padding: 10px;
-    color: #fff;
-    border: 2px solid #06D85F;
-    border-radius: 20px/50px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-  }
-  .button:hover {
-    background: #06D85F;
-  }
-  
-  .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    transition: opacity 500ms;
-    visibility: hidden;
-    opacity: 0;
-  }
-  .overlay:target {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .popup {
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 30%;
-    position: relative;
-    transition: all 5s ease-in-out;
-  }
-  
-  .popup h2 {
-    margin-top: 0;
-    color: #333;
-    font-family: Tahoma, Arial, sans-serif;
-  }
-  .popup .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-  }
-  .popup .close:hover {
-    color: #06D85F;
-  }
-  .popup .content {
-    max-height: 30%;
-    overflow: auto;
-  }
-  
-  @media screen and (max-width: 700px){
-    .box{
-      width: 70%;
-    }
-    .popup{
-      width: 70%;
-    }
-  }
-</style>
-
-<script>
-  $(document).ready(function() {
-    $('#dataTable').DataTable();
-  });
-  
-</script>
-
-        
-<title>Bir Makale Ekleyin</title>
-<link href="../static/css/style.css" rel="stylesheet" />
-
-<div class="container alert alert-success" >
-  <SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
-    function hide(id){
-      var divObject=document.getElementById(id);
-      divObject.style.display="block";
-    }
-    function show(id){
-      var divObject=document.getElementById(id);
-      divObject.style.display="none";
-    }	
-  </SCRIPT>
-  
-  <table>
-    <tr>
-      <td>
-        <a class="btn btn-primary" href="javascript:hide('test')">İpucunu Göster </a>
-      </td>
-      <td>
-        <a class="btn btn-primary" href="javascript:show('test')">İpucunu Gizle </a>
-      </td>
-    </tr>
-  </table>
-  <div id="test"><br>
-    
-      Yazılarımıza eklediğimiz kod bloklarının renkli ve anlaşılır şekilde olması için CkEditor'de kaynak kısmına bastıktan sonra yazımıza şu etiketi ekliyor ve etiketler arasına istediğimiz kod bloklarını ekliyoruz.
-      <hr>
-      < pre class="prettyprint" >< /pre >
-      <hr>
-      Örnek:
-      < pre class="prettyprint" >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href=" {% static 'css/articles.css' %} ">
+  <title>Bir Makale Ekleyin</title>
+</head>
+<body>
+      <script>
+        $(document).ready(function() {
+          $('#dataTable').DataTable();
+        });
+      </script>
+      <section class="d-flex align-items-center hero">
+        <div class="container text-center position-relative wow fadeInLeft" data-wow-duration="1.2s" >
+          <h1 >Bir Yazı Paylaşın</h1>
+        </div>
+      </section>
       <br>
-      <pre class="prettyprint" style="float: left;">
-      Örnek python kodu:
-      print("Hello,World")
-      C++ Kodu :
-      "cout<<"Hello, World"<< endl;"
-      </pre>
-      <br><br><br><br><br><br>
-      < /pre>
-      <hr>
-      <div class="aler alert-danger">*Kopyala yapıştır yapmak istiyorsanız <> arasındaki boşlukları kaldırın !</div>
-      <hr>
-  
-</div>
-  
-</div>
-
-
-<div class="container">
-    <form method = "post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{form.media}}
-      {{form|crispy}}
-      <br>
-      <button type = "submit" class = "btn btn-success">Makale Ekle</button>
-    </form>
-</div>
-<br>
-              
+      <div class="container">
+          <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type = "submit" class = "btn btn-success">Makale Ekle</button>
+          </form>
+      </div>
+      
+           
+</body>
+</html>  
       
       
         

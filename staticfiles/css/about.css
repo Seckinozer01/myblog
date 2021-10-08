@@ -1,0 +1,204 @@
+    /*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about {
+    background: url("../img/dünya.jpg") center center;
+    background-size: cover;
+    position: relative;
+    padding: 80px 0;
+
+  }
+
+  
+  
+  .about .about-img {
+    position: relative;
+    transition: .5s;
+  }
+  
+  .about .about-img img {
+    max-width: 100%;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+  
+  .about .about-img::before {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1;
+    content: '';
+    border-left: 5px solid #cda45e;
+    border-top: 5px solid #cda45e;
+    transition: .5s;
+  }
+  
+  .about .about-img::after {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+    content: '';
+    border-right: 5px solid #cda45e;
+    border-bottom: 5px solid #cda45e;
+    transition: .5s;
+  }
+  
+  .about .about-img:hover {
+    transform: scale(1.03);
+  }
+  
+  .about .about-img:hover::before {
+    left: 10px;
+    top: 10px;
+  }
+  
+  .about .about-img:hover::after {
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .about .content h3 {
+    font-weight: 600;
+    font-size: 26px;
+  }
+  
+  .about .content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about .content ul li {
+    padding-bottom: 10px;
+  }
+  
+  .about .content ul i {
+    font-size: 20px;
+    padding-right: 4px;
+    color: #cda45e;
+  }
+  
+  .about .content p:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (min-width: 1024px) {
+    .about {
+      background-attachment: fixed;
+    }
+  }
+    .custom{
+        margin-top: 30px;
+        margin:90px 20px;
+    }
+
+    
+    
+    .team .team-item {
+        text-align: left;
+        margin-bottom: 30px
+    }
+    
+    .team .team-item figure {
+        position: relative;
+        overflow: hidden
+    }
+    
+    img {
+        max-width: 100%
+    }
+    
+    .team .team-item figure figcaption {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: rgba(9, 9, 9, .6);
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        transition: all .5s ease
+    }
+    
+    .team .team-item figure figcaption .info {
+        position: absolute;
+        color: #fff;
+        float: left;
+        bottom: 40px;
+        left: 20px;
+        margin-left: -80px;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        transition: all .5s ease
+    }
+    
+    .team .team-item figure:hover figcaption {
+        opacity: 1
+    }
+    
+    .team .team-item figure:hover figcaption .info {
+        margin-left: 0
+    }
+    
+    .team .team-item figure figcaption .info h3 {
+        font-size: 20px
+        
+    }
+    
+    .team .team-item figure figcaption .info p {
+        color: #fff
+    }
+    
+    .team .team-item figure:hover figcaption .social {
+        margin-bottom: 0
+    }
+    
+    .team .team-item figure figcaption .social {
+        position: absolute;
+        float: right;
+        bottom: 20px;
+        margin-bottom: 0px;
+        right: 5px;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        transition: all .5s ease
+    }
+    
+    .team .team-item figure figcaption .social a {
+        color: #fff;
+        font-size: 15px;
+        width: 36px;
+        height: 36px;
+        background: #3f51b5;
+        display: inline-block;
+        text-align: center;
+        line-height: 36px;
+        border-radius: 2px
+    }
+    
+
+      .typing-demo {
+        width: 27ch;
+        animation: typing 2s steps(54), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        font-family: monospace;
+        font-size: 2em;
+      }
+      
+      @keyframes typing {
+        from {
+          width: 0
+        }
+      }
+          
+      @keyframes blink {
+        50% {
+          border-color: transparent
+        }
+      }
